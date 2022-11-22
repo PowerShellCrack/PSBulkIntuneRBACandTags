@@ -1,0 +1,3 @@
+Org,Region,Area,Role Definition,Role,Included Tag 1,Included Tag 2,Included Tag 3,Included Tag 4,Included Tag 5,Included Tag 6,Included Tag 7,Included Tag 8,Scope Tags,Member Group
+DMG,ETX,South Texas,LeadFTO,DMG-ETX-South Texas-Read-Only-Operator,ETX-South Texas-Windows,ETX-South Texas-MacOS,ETX-South Texas-iOS-Mobile,ETX-South Texas-iPad,ETX-South Texas-Android,ETX-South Texas-SurfaceHub,ETX-South Texas-TeamsRoom,ETX-South Texas-TeamsPhone,ETX-North Central Texas-Android
+DMG,ETX,South Texas,HelpdeskRole,DMG-ETX-South Texas-Report-Only,ETX-South Texas-Windows,ETX-South Texas-MacOS,ETX-South Texas-iOS-Mobile,ETX-South Texas-iPad,ETX-South Texas-Android,ETX-South Texas-SurfaceHub,ETX-South Texas-TeamsRoom,ETX-South Texas-TeamsPhone,ETX-North Central Texas-SurfaceHub
