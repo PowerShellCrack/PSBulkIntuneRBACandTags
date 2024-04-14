@@ -1,2 +1,4 @@
+!/tests/
+/tests/*
 *tests.ps1
 secrets*
