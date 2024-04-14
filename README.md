@@ -1,6 +1,6 @@
 # Bulk Intune RBAC Role and Tag creation script
 
-This script is written using Microsoft Graph api calls to creates and assign Azure AD groups and Tags to Intune RBAC Roles.
+This script is written using Microsoft Graph api calls to creates and assign Azure Entra groups and Tags to Intune RBAC Roles.
 
 ## Requirements
 
@@ -47,8 +47,8 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 ## Scripts
 
 - __GenerateScopeGroups.ps1__ --> Export a the ScopeTagAndAssignments.csv based on Site data
-- __IntuneRolesCreation.ps1__ --> Creates and assigns Azure AD groups, Tags and Intune RBAC Roles based comma-delimited list
-- __IntuneRolesDeletion.ps1__ --> Deletes Azure AD groups, Tags and Intune RBAC Roles based comma-delimited list
+- __IntuneRolesCreation.ps1__ --> Creates and assigns Azure Entra groups, Tags and Intune RBAC Roles based comma-delimited list
+- __IntuneRolesDeletion.ps1__ --> Deletes Azure Entra groups, Tags and Intune RBAC Roles based comma-delimited list
 
 
 ### Parameters
@@ -59,11 +59,11 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 | RbacListPath | CSV | Default value is _.\ManagementRoles.csv_. Specify full path to csv file | x | x ||
 | TagAndAssignmentListPath | CSV | Default value is _.\ScopeTagAndAssignments.csv_. Specify full path to csv file | x | x | x |
 | SourceListPath | CSV | Specify full path to csv file for Site data ||| x |
-| DefaultAdminAADGroup | string | Default value is 'SG-AZ-EndpointMgr-Admins'. If group is not found in Azure AD, script will prompt to create it as user assigned type | x | ||
-| DeviceFilter | array | Must be an Array _eg. @('Windows'), @('Windows','Android')_.<br>- Values that can be used are: _'Windows','macOS','iPhone','iPad','Android','SurfaceHub','TeamsRoom','TeamsPhone'_.<br>-  Values should corresponding with ending of Tags and ending of Azure AD groups in csv lists. This will filter the creation of Azure AD groups as well as assigning tags.<br> __See Work Around__ | x ||
-| SkipRoleAssignment | switch |  Skips the role assignment enumeration. No roles will be assigned to their respective Azure AD group |x|||
+| DefaultAdminAADGroup | string | Default value is 'SG-AZ-EndpointMgr-Admins'. If group is not found in Azure Entra, script will prompt to create it as user assigned type | x | ||
+| DeviceFilter | array | Must be an Array _eg. @('Windows'), @('Windows','Android')_.<br>- Values that can be used are: _'Windows','macOS','iPhone','iPad','Android','SurfaceHub','TeamsRoom','TeamsPhone'_.<br>-  Values should corresponding with ending of Tags and ending of Azure Entra groups in csv lists. This will filter the creation of Azure Entra groups as well as assigning tags.<br> __See Work Around__ | x ||
+| SkipRoleAssignment | switch |  Skips the role assignment enumeration. No roles will be assigned to their respective Azure Entra group |x|||
 | SkipRoleTags | switch | Skips the tagging Roles and in the assignments. Tagging roles allows member to view Role and its assignment |x|||
-| NoPrompt | switch | Does not ask to create Azure AD member groups; would prompt for DefaultAdminAADGroup and when 'Member Group' column is populated |x|||
+| NoPrompt | switch | Does not ask to create Azure Entra member groups; would prompt for DefaultAdminAADGroup and when 'Member Group' column is populated |x|||
 | NoAction | switch | Does nothing and simulates action using _Whatif_ like output ||x||
 | Verbose | switch | Very noisy but does output additional information | x | x | x |
 
@@ -92,7 +92,7 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 .\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -DeviceFilter @('Windows')
 
 # CREATE EXAMPLE 5
-#Run script using specified csv files but don't assign Roles to Azure AD groups
+#Run script using specified csv files but don't assign Roles to Azure Entra groups
 .\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -SkipRoleAssignment
 
 # CREATE EXAMPLE 6
@@ -106,7 +106,7 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 - Displays simple report at end of run
 - If error happens during _Role_ Creation; an error csv file will be created (name will follow csv name with appended date)
 - If error happens during _Tag_ Creation; an error csv file will be created (name will follow csv name with appended date)
-- If error happens during _Azure AD group_ Creation; an error csv file will be created (name will follow csv name with appended date)
+- If error happens during _Azure Entra group_ Creation; an error csv file will be created (name will follow csv name with appended date)
 
 
 ## Known Issues & Work Around
