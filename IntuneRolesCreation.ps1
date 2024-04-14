@@ -736,6 +736,7 @@ Foreach($Rbac in $RbacList)
     } # End -SkipRoleAssignment check
 }
 
+Disconnect-MgGraph
 
 ## =====================
 ## SUMMARY REPORT

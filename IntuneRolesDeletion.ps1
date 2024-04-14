@@ -173,6 +173,7 @@ Foreach($AzureGroup in $TagAndAssignment)
     Write-Host '-------------------------------------------------------------------'
 }
 
+Disconnect-MgGraph
 
 $totalSecs = [timespan]::fromseconds($stopwatch.Elapsed.TotalSeconds)
 Write-Host ("Completed Intune Roles and tag deletion [{0:hh\:mm\:ss}]" -f $totalSecs) -ForegroundColor Green
