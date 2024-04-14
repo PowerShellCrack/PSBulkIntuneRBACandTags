@@ -18,9 +18,6 @@
     This posting is provided "AS IS" with no warranties, and confers no rights. Use of included script samples are subject to the terms specified
     at https://www.microsoft.com/en-us/legal/copyright.
 
-.PARAMETER GraphAdminUPN
-    Provide Azure UPN to authenticate to Graph
-
 .PARAMETER RbacListPath
     Default value is '.\ManagementRoles.csv'
 
@@ -31,24 +28,21 @@
     Simulates action using Whatif output. No deletion will occur
 
 .EXAMPLE
-    .\IntuneRolesDeletion.ps1 -GraphAdminUPN admin@yourdomain.onmicrosoft.com
+    .\IntuneRolesDeletion.ps1
 
 .EXAMPLE
-    .\IntuneRolesDeletion.ps1 -GraphAdminUPN admin@yourdomain.onmicrosoft.com -NoAction
+    .\IntuneRolesDeletion.ps1 -NoAction
 
 .EXAMPLE
-    .\IntuneRolesDeletion.ps1 -GraphAdminUPN admin@yourdomain.onmicrosoft.com -RbacListPath .\ManagementRolesSample.csv -TagAndAssignmentListPath .\ScopeTagAndAssignmentsSample.csv
+    .\IntuneRolesDeletion.ps1 -RbacListPath .\ManagementRolesSample.csv -TagAndAssignmentListPath .\ScopeTagAndAssignmentsSample.csv
 
 .EXAMPLE
-    .\IntuneRolesDeletion.ps1 -GraphAdminUPN admin@yourdomain.onmicrosoft.com -RbacListPath .\ManagementRolesSample.csv -TagAndAssignmentListPath .\ScopeTagAndAssignmentsSample.csv -NoAction
+    .\IntuneRolesDeletion.ps1 -RbacListPath .\ManagementRolesSample.csv -TagAndAssignmentListPath .\ScopeTagAndAssignmentsSample.csv -NoAction
 #>
 
 
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory=$true)]
-    [string]$GraphAdminUPN,
-
     [ValidateScript({Test-Path $_})]
     $RbacListPath = '.\ManagementRoles.csv',
 
@@ -114,12 +108,8 @@ Foreach($Tag in $TagAndAssignment)
     }
     Write-Host '-------------------------------------------------------------------'
 }
-Write-Host
 
-#Create tags and group can take awhile; re-auth to Graph may be required
-If( [System.DateTimeOffset]$Global:Authtoken.ExpiresOn -lt [System.DateTimeOffset](Get-Date)){
-    $Global:Authtoken = Get-AuthToken -User $GraphAdminUPN
-}
+
 ## ==============
 ## Remove Roles
 ## ==============

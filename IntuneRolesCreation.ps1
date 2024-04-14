@@ -27,8 +27,8 @@
 .PARAMETER TagAndAssignmentListPath
     Default value is '.\ScopeTagAndAssignments.csv'
 
-.PARAMETER DefaultAdminAADGroup
-    Default value is 'SG-AZ-EndpointMgr-Admins'
+.PARAMETER DefaultAdminEntraGroup
+    Default value is 'SG-AZ-Intune-Admins'
 
 .PARAMETER DeviceFilter
     Can be an Array eg. @('Windows') or @('Windows','Android')
@@ -48,7 +48,7 @@
 
 .EXAMPLE
     #Run script using default csv but assign Role members to specified Azure AAD group
-    .\IntuneRolesCreation.ps1 -DefaultAdminAADGroup "SG-FTE-EndpointMgr-Admins"
+    .\IntuneRolesCreation.ps1 -DefaultAdminEntraGroup "SG-FTE-Intune-Admins"
 
 .EXAMPLE
     #Run script using specified csv files
@@ -69,7 +69,7 @@
 .EXAMPLE
     $RbacListPath = '.\ManagementRolesSample.csv'
     $TagAndAssignmentListPath = '.\ScopeTagAndAssignmentsSample.csv'
-    $DefaultAdminAADGroup = 'SG-AZ-EndpointMgr-Admins'
+    $DefaultAdminEntraGroup = 'SG-AZ-Intune-Admins'
     .\IntuneRolesCreation.ps1 -RbacListPath $RbacListPath -TagAndAssignmentListPath $TagAndAssignmentListPath -NoPrompts
 #>
 
@@ -82,7 +82,7 @@ param (
     [ValidateScript({Test-Path $_})]
     $TagAndAssignmentListPath = '.\ScopeTagAndAssignments.csv',
 
-    $DefaultAdminAADGroup = 'SG-AZ-EndpointMgr-Admins',
+    $DefaultAdminEntraGroup = 'SG-AZ-Intune-Admins',
 
     [string[]]$DeviceFilter,
 
@@ -226,19 +226,19 @@ $CurrentRbacRoles = Get-IDMRole -IncludeBuiltin
 $DefaultRoleTemplates = (Get-ParameterOption -Command New-IDMRoleDefinition -Parameter PermissionSet)
 
 #check if default group is created; if not create it
-If(-Not(Get-IDMAzureGroup -GroupName $DefaultAdminAADGroup) ){
+If(-Not(Get-IDMAzureGroup -GroupName $DefaultAdminEntraGroup) ){
     If($NoPrompts){
-        Write-Host ('[{0}] group was not found in Azure AD. Creating group....' -f $DefaultAdminAADGroup) -ForegroundColor Yellow
+        Write-Host ('[{0}] group was not found in Azure AD. Creating group....' -f $DefaultAdminEntraGroup) -ForegroundColor Yellow
         $CreateDefaultGroup = 'Y'
     }
     Else{
-        Write-Host ('[{0}] group was not found in Azure AD. Please specify an existing default Azure AD group for Member assignment' -f $DefaultAdminAADGroup) -ForegroundColor Red
-        $CreateDefaultGroup = Read-host ("Would you like to create the Azure Ad group [{0}]? [Y or N]" -f $DefaultAdminAADGroup)
+        Write-Host ('[{0}] group was not found in Azure AD. Please specify an existing default Azure AD group for Member assignment' -f $DefaultAdminEntraGroup) -ForegroundColor Red
+        $CreateDefaultGroup = Read-host ("Would you like to create the Azure Ad group [{0}]? [Y or N]" -f $DefaultAdminEntraGroup)
     }
 
     If($CreateDefaultGroup -eq 'Y'){
         Try{
-            $Result = New-IDMAzureGroup -DisplayName $DefaultAdminAADGroup -GroupType Unified -ErrorAction Stop
+            $Result = New-IDMAzureGroup -DisplayName $DefaultAdminEntraGroup -GroupType Unified -ErrorAction Stop
         }
         Catch{
             Write-Host ('Failed. {0}' -f ($_.exception.message | ConvertFrom-Json).error.message) -ForegroundColor Red
@@ -618,7 +618,7 @@ Foreach($Rbac in $RbacList)
             $MemberGroup = $Rbac.'Member Group'
         }
         Else{
-            $MemberGroup = $DefaultAdminAADGroup
+            $MemberGroup = $DefaultAdminEntraGroup
         }
 
         #get member group id
@@ -644,10 +644,10 @@ Foreach($Rbac in $RbacList)
                 }
                 Catch{
                     Write-Host ('Failed. {0}' -f ($_.exception.message | ConvertFrom-Json).error.message) -ForegroundColor Red
-                    $MemberGroup = $DefaultAdminAADGroup
+                    $MemberGroup = $DefaultAdminEntraGroup
                 }
             }
-            Else{$MemberGroup = $DefaultAdminAADGroup}
+            Else{$MemberGroup = $DefaultAdminEntraGroup}
         }
 
         #define AADGroups as an array first (that way count 1 will show in output)
