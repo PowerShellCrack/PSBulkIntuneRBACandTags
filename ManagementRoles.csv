@@ -1,3 +1,5 @@
 Org,Region,Area,Role Definition,Role,Included Tag 1,Included Tag 2,Included Tag 3,Included Tag 4,Included Tag 5,Included Tag 6,Included Tag 7,Included Tag 8,Scope Tags,Member Group
-DMG,ETX,South Texas,LeadFTO,DMG-ETX-South Texas-Read-Only-Operator,ETX-South Texas-Windows,ETX-South Texas-MacOS,ETX-South Texas-iOS-Mobile,ETX-South Texas-iPad,ETX-South Texas-Android,ETX-South Texas-SurfaceHub,ETX-South Texas-TeamsRoom,ETX-South Texas-TeamsPhone,ETX-North Central Texas-Android
-DMG,ETX,South Texas,HelpdeskRole,DMG-ETX-South Texas-Report-Only,ETX-South Texas-Windows,ETX-South Texas-MacOS,ETX-South Texas-iOS-Mobile,ETX-South Texas-iPad,ETX-South Texas-Android,ETX-South Texas-SurfaceHub,ETX-South Texas-TeamsRoom,ETX-South Texas-TeamsPhone,ETX-North Central Texas-SurfaceHub
+ORG,US,Texas,Read Only Operator,ORG-US-TX-Read-Only-Operator,US-TX-Windows,US-TX-MacOS,US-TX-iOS-Mobile,US-TX-iPad,US-TX-Android,US-TX-SurfaceHub,US-TX-TeamsRoom,US-TX-TeamsPhone,US-TX-Android
+ORG,US,Texas,Help Desk Operator,ORG-US-TX-Report-Only,US-TX-Windows,US-TX-MacOS,US-TX-iOS-Mobile,US-TX-iPad,US-TX-Android,US-TX-SurfaceHub,US-TX-TeamsRoom,US-TX-TeamsPhone,US-TX-SurfaceHub
+ORG,US,NorthCarolina,Read Only Operator,ORG-US-NC-Read-Only-Operator,US-NC-Windows,US-NC-MacOS,US-NC-iOS-Mobile,US-NC-iPad,US-NC-Android,US-NC-SurfaceHub,US-NC-TeamsRoom,US-NC-TeamsPhone,US-NC-Android
+ORG,US,NorthCarolina,Help Desk Operator,ORG-US-NC-Report-Only,US-NC-Windows,US-NC-MacOS,US-NC-iOS-Mobile,US-NC-iPad,US-NC-Android,US-NC-SurfaceHub,US-NC-TeamsRoom,US-NC-TeamsPhone,US-NC-SurfaceHub

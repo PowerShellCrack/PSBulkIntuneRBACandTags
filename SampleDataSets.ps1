@@ -48,7 +48,7 @@ $Group = $GroupSet[0]
 $GraphAdminUPN = 'admin@MSDx012170.onmicrosoft.com'
 $RbacListPath = '.\ManagementRoles.csv'
 $TagAndAssignmentListPath = '.\ScopeTagAndAssignments.csv'
-$DefaultAdminAADGroup = 'SG-DMG-EndpointMgr-Admins'
+$DefaultAdminAADGroup = 'SG-AZ-EndpointMgr-Admins'
 $DeviceFilter = @('Windows')
 $SkipRoleAssignment = $false
 $SkipRoleTags = $true
@@ -69,9 +69,9 @@ $SkipRoleTags = $false
 
 
 <# SAMPLE New-IntuneAadGroup
-    $DisplayName = 'SG-AZ-DYN-DMG-WST-Northern California/Pacific-TeamsRoom-1'
-    $DisplayName = 'SG-AZ-DYN-DMG-ALL-VirtualMachines'
-    $DisplayName = 'SG-AZ-SEC-DMG-ALL-VirtualMachines-Users'
+    $DisplayName = 'SG-AZ-DYN-ORG-WST-Northern California/Pacific-TeamsRoom-1'
+    $DisplayName = 'SG-AZ-DYN-ORG-ALL-VirtualMachines'
+    $DisplayName = 'SG-AZ-SEC-ORG-ALL-VirtualMachines-Users'
     $Description = 'All Users with Virtual Machines'
     $RuleExpression = '(device.deviceModel -eq "Virtual Machine") or (device.deviceModel -eq "VMware Virtual Platform") or (device.deviceModel -eq "VMware7,1")'
     $GroupType = 'Unified'
@@ -79,14 +79,14 @@ $SkipRoleTags = $false
 
 
 <# SAMPLE New-IntuneAADDynamicGroup
-    $DisplayName = 'SG-AZ-DYN-DMG-WST-Northern California/Pacific-TeamsRoom-1'
+    $DisplayName = 'SG-AZ-DYN-ORG-WST-Northern California/Pacific-TeamsRoom-1'
     $Description = 'All Virtual Machines / Vmware'
     $RuleExpression = '(device.deviceModel -eq "Virtual Machine") or (device.deviceModel -eq "VMware Virtual Platform") or (device.deviceModel -eq "VMware7,1")'
 #>
 
 
 <# SAMPLE Update-IntuneAADDynamicGroup
-    $DisplayName = 'SG-AZ-DYN-DMG-WST-Northern California/Pacific-TeamsRoom-1'
+    $DisplayName = 'SG-AZ-DYN-ORG-WST-Northern California/Pacific-TeamsRoom-1'
     $Description = 'All Virtual Machines / Vmware'
     $RuleExpression = '(device.deviceModel -eq "Virtual Machine") or (device.deviceModel -eq "VMware Virtual Platform") or (device.deviceModel -eq "VMware7,1")'
 #>
@@ -96,12 +96,12 @@ $SkipRoleTags = $false
     $DisplayName = "[NE] Mid-Atlantic Read-Only-Operator's"
     $Description = '[Applications Manager] assignment for region [1] in area [North Carolina]'
     $Id = (Get-IntuneRole -Name 'Application Manager' -IncludeBuiltin).Id
-    $Id = (Get-IntuneRole -Name 'DMG-NE-Mid-Atlantic-Read-Only-Operator').Id
+    $Id = (Get-IntuneRole -Name 'ORG-NE-Mid-Atlantic-Read-Only-Operator').Id
     $TargetGroupIds = @()
     $TargetGroupIds += (Get-IntuneRoleAadGroup -GroupName 'DdSecGrp - AutoPilot: All Devices').id
-    $TargetGroupIds += (Get-IntuneRoleAadGroup -GroupName 'SG-AZ-DYN-DMG-NE-Mid-Atlantic-Windows-1').id
+    $TargetGroupIds += (Get-IntuneRoleAadGroup -GroupName 'SG-AZ-DYN-ORG-NE-Mid-Atlantic-Windows-1').id
     $MemberGroupIds = @()
-    $MemberGroupIds += (Get-IntuneRoleAadGroup -GroupName 'SG-DMG-EndpointMgr-Admins').id
+    $MemberGroupIds += (Get-IntuneRoleAadGroup -GroupName 'SG-AZ-EndpointMgr-Admins').id
 #>
 
 
@@ -111,7 +111,7 @@ $SkipRoleTags = $false
 #>
 
 <# SAMPLE Invoke-IntuneRoleAssignment
-    $AzureADGroupId = (Get-IntuneRoleAadGroup -GroupName 'SG-AZ-DYN-DMG-NE-Mid-Atlantic-Windows-1').id
+    $AzureADGroupId = (Get-IntuneRoleAadGroup -GroupName 'SG-AZ-DYN-ORG-NE-Mid-Atlantic-Windows-1').id
     $TargetGroupId = @()
     $TargetGroupId += $AzureADGroupId
     $ID = (Get-IntuneRole -Name 'Application Manager' -IncludeBuiltin).Id

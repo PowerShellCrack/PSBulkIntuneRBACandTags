@@ -32,7 +32,7 @@
     Default value is '.\ScopeTagAndAssignments.csv'
 
 .PARAMETER DefaultAdminAADGroup
-    Default value is 'SG-DMG-EndpointMgr-Admins'
+    Default value is 'SG-AZ-EndpointMgr-Admins'
 
 .PARAMETER DeviceFilter
     Can be an Array eg. @('Windows') or @('Windows','Android')
@@ -76,7 +76,7 @@
 .EXAMPLE
     $RbacListPath = '.\ManagementRolesSample.csv'
     $TagAndAssignmentListPath = '.\ScopeTagAndAssignmentsSample.csv'
-    $DefaultAdminAADGroup = 'SG-DMG-EndpointMgr-Admins'
+    $DefaultAdminAADGroup = 'SG-AZ-EndpointMgr-Admins'
     $GraphAdminUPN = 'admin@M365x436969.onmicrosoft.com'
     .\IntuneRolesCreation.ps1 -GraphAdminUPN $GraphAdminUPN -RbacListPath $RbacListPath -TagAndAssignmentListPath $TagAndAssignmentListPath -NoPrompts
 #>
@@ -93,7 +93,7 @@ param (
     [ValidateScript({Test-Path $_})]
     $TagAndAssignmentListPath = '.\ScopeTagAndAssignments.csv',
 
-    $DefaultAdminAADGroup = 'SG-DMG-EndpointMgr-Admins',
+    $DefaultAdminAADGroup = 'SG-AZ-EndpointMgr-Admins',
 
     [string[]]$DeviceFilter,
 
@@ -586,7 +586,7 @@ Function Update-IntuneAadDynamicGroup{
     The function connects to the Graph API Interface and updates an Azure AD dynamic group
 
     .EXAMPLE
-    Update-IntuneAadDynamicGroup -DisplayName 'SG-AZ-DYN-DMG-ALL-VirtualMachines' -NewRuleExpression '(device.deviceModel -eq "Virtual Machine") or (device.deviceModel -eq "VMware Virtual Platform")'
+    Update-IntuneAadDynamicGroup -DisplayName 'SG-AZ-DYN-ORG-ALL-VirtualMachines' -NewRuleExpression '(device.deviceModel -eq "Virtual Machine") or (device.deviceModel -eq "VMware Virtual Platform")'
 
     .NOTES
     REFERENCE: https://docs.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0&tabs=http

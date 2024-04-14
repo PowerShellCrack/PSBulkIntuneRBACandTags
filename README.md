@@ -1,14 +1,17 @@
 # Bulk Intune RBAC Role and Tag creation script
+
 This script is written using Microsoft Graph api calls to creates and assign Azure AD groups and Tags to Intune RBAC Roles.
 
 ## Requirements
 
 ### Network Information Management System list
+
 Site Code|Region|Area
 |--|--|--|
 |Required (a)|Required (a)|Required (a)|
 
 ### Scope Tag with Assignment List
+
 - Must be in csv format. Can be generated using _GenerateScopeGroups.ps1_ script. Columns used are:
 
 Region|Area|Device Type|Scope Tags|Scope Groups|Criteria
@@ -17,6 +20,7 @@ Region|Area|Device Type|Scope Tags|Scope Groups|Criteria
 
 
 ### RBAC list
+
 - Must be in csv format. Can be exported using from _CBP Intune Management Tags Groups Roles.xlsx_. Columns used are:
 
 Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
@@ -25,6 +29,7 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 
 
 ### Key
+
 - (a) --> Used to match corresponding role with tag
 - (b) --> At least one tag is needed, increment column # (eg. Included Tag 1, Included Tag 2, etc)
 - (c) --> Length cannot be more that 3072 characters (Azure limitation)
@@ -92,9 +97,6 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 
 - Displays status of each group tag and role.
 - Displays simple report at end of run
-
-  ![Summary](./.images/finishedreport_example.jpg)
-
 - If error happens during _Role_ Creation; an error csv file will be created (name will follow csv name with appended date)
 - If error happens during _Tag_ Creation; an error csv file will be created (name will follow csv name with appended date)
 - If error happens during _Azure AD group_ Creation; an error csv file will be created (name will follow csv name with appended date)
