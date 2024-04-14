@@ -77,27 +77,27 @@ Org|Region|Area|Role Definition|Role|Included Tag #|Scope Tags|Member Group|
 
 # CREATE EXAMPLE 1
 #Run script using default values (graph UPN required)
-.\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com'
+.\IntuneRolesCreation.ps1
 
 # CREATE EXAMPLE 2
 #Run script using default csv but assign Role members to specified Azure AAD group
-.\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -DefaultAdminAADGroup "SG-FTE-EndpointMgr-Admins"
+.\IntuneRolesCreation.ps1 -DefaultAdminAADGroup "SG-FTE-EndpointMgr-Admins"
 
 # CREATE EXAMPLE 3
 #Run script using specified csv files
-.\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\ScopeTagAndAssignmentsSample.csv'
+.\IntuneRolesCreation.ps1 -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\ScopeTagAndAssignmentsSample.csv'
 
 # CREATE EXAMPLE 4
 #Run script using specified csv files and filter only groups with 'Windows' in the name
-.\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -DeviceFilter @('Windows')
+.\IntuneRolesCreation.ps1 -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -DeviceFilter @('Windows')
 
 # CREATE EXAMPLE 5
 #Run script using specified csv files but don't assign Roles to Azure Entra groups
-.\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -SkipRoleAssignment
+.\IntuneRolesCreation.ps1 -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -SkipRoleAssignment
 
 # CREATE EXAMPLE 6
 #Run script using specified csv files but don't assign tags to RBAC Roles
-.\IntuneRolesCreation.ps1 -GraphAdminUPN 'admin@yourdomain.onmicrosoft.com' -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -SkipRoleTags
+.\IntuneRolesCreation.ps1 -RbacListPath '.\SampleData\ManagementRolesSample.csv' -TagAndAssignmentListPath '.\SampleData\ScopeTagAndAssignmentsSample.csv' -SkipRoleTags
 ```
 
 ### Outputs
